@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - var apartments=[{apartment_location:"Village O",apartment_size:"2",apartment_rent:4000},{apartment_location:"Downtown",apartment_size:"4",apartment_rent:2000},{apartment_location:"Park Avenue",apartment_size:"3",apartment_rent:3000}]
+  div(class="container-fluid")
+  div(class="row")
+   each z,index  in apartments
+    div(class="col-sm-2" onclick =`buy(${index})`) #{z.apartment_location}, #{z.apartment_size}, #{z.apartment_rent}
+    script.
+        function buy(a)
+        {
+            alert(`You purchased Item ${a+1}`)
+        }
