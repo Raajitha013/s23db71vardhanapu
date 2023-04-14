@@ -19,8 +19,8 @@ var usersRouter = require('./routes/users');
 var apartmentsRouter = require('./routes/apartments');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
-var apartmentsRouter = require("./models/apartments");
-const apartments = require('./models/apartments');
+//var apartmentsRouter = require("./models/apartments");
+var apartments = require('./models/apartments');
 var resourceRouter = require("./routes/resource");
 
 //Get the default connection
