@@ -3,22 +3,56 @@ var apartments = require('../models/apartments');
 exports.apartments_list = function (req, res) {
     res.send('NOT IMPLEMENTED: apartments list');
 };
-// for a specific apartments.
-exports.apartments_detail = function (req, res) {
-    res.send('NOT IMPLEMENTED: apartments detail: ' + req.params.id);
+// for a specific Costume.
+exports.apartments_detail = async function (req, res) {
+    console.log("detail" + req.params.id)
+    try {
+        result = await apartments.findById(req.params.id)
+        res.send(result)
+    } catch (error) {
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
+    }
 };
+//Handle Costume update form on PUT.
+exports.apartments_update_put = async function (req, res) {
+    console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await apartments.findById(req.params.id)
+        // Do updates of properties
+        if (req.body.apartment_location)
+            toUpdate.apartment_location = req.body.apartment_location;
+        if (req.body.apartment_size) toUpdate.apartment_size = req.body.apartment_size;
+        if (req.body.apartment_rent) toUpdate.apartment_rent = req.body.apartment_rent;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+    }
+};
+
 // Handle apartments create on POST.
 exports.apartments_create_post = function (req, res) {
     res.send('NOT IMPLEMENTED: apartments create POST');
 };
-// Handle apartments delete form on DELETE.
-exports.apartments_delete = function (req, res) {
-    res.send('NOT IMPLEMENTED: apartments delete DELETE ' + req.params.id);
+// Handle Costume delete on DELETE.
+exports.apartments_delete = async function (req, res) {
+    console.log("delete " + req.params.id)
+    try {
+        result = await apartments.findByIdAndDelete(req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
-// Handle apartments update form on PUT.
-exports.apartments_update_put = function (req, res) {
-    res.send('NOT IMPLEMENTED: apartments update PUT' + req.params.id);
-};
+
+
 
 // List of all Costumes
 exports.apartments_list = async function (req, res) {
@@ -68,3 +102,17 @@ exports.apartments_create_post = async function (req, res) {
 
 
 
+// // for a specific apartments.
+// exports.apartments_detail = function (req, res) {
+//     res.send('NOT IMPLEMENTED: apartments detail: ' + req.params.id);
+// };
+
+// // Handle apartments update form on PUT.
+// exports.apartments_update_put = function (req, res) {
+//     res.send('NOT IMPLEMENTED: apartments update PUT' + req.params.id);
+// };
+
+// // Handle apartments delete form on DELETE.
+// exports.apartments_delete = function (req, res) {
+//     res.send('NOT IMPLEMENTED: apartments delete DELETE ' + req.params.id);
+// };
