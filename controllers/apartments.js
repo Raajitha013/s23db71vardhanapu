@@ -142,6 +142,7 @@ res.send(`{'error': '${err}'}`);
 }
 };
 
+// New code for delete SS9
 // Handle a delete one view with id from query
 exports.apartments_delete_Page = async function(req, res) {
 console.log("Delete view for id " + req.query.id)
@@ -155,7 +156,6 @@ res.status(500)
 res.send(`{'error': '${err}'}`);
 }
 };
-
 
 
 

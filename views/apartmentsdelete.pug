@@ -16,22 +16,21 @@ block content
       let actionid = "#{actionid}"
 
     div
-      form(id='deleteForm', action=actionid, method='POST')
       div.row
-        div(class='apartmentsAttr mr-3') apartments ID is:
+        div(class='apartmentsAttr mr-3') Apartments ID is:
         div #{apartmentsid}
 
       div.row
-        div(class='apartmentsAttr mr-3') apartments location is:
+        div(class='apartmentsAttr mr-3') apartment location is:
         div #{apartment_location}
 
       div.row
-        div(class='apartmentsAttr mr-3') apartments Size is:
-        div #{apartment_size}
+        div(class='apartmentsAttr mr-3') apartment rent is:
+        div #{apartment_rent}
 
       div.row
-        div(class='apartmentsAttr mr-3') apartments rent is:
-        div #{apartment_rent}
+        div(class='apartmentsAttr mr-3') apartment size is:
+        div #{apartment_size}
 
       button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
       button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
