@@ -100,6 +100,63 @@ exports.apartments_create_post = async function (req, res) {
     }
 };
 
+// Handle a show one view with id specified by query
+exports.apartments_view_one_Page = async function (req, res) {
+    console.log("single view for id " + req.query.id)
+    try {
+        result = await apartments.findById(req.query.id)
+        res.render('apartmentsdetail',
+            { title: 'apartments Detail', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle building the view for creating a costume.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.apartments_create_Page = function(req, res) {
+console.log("create view")
+try{
+res.render('apartmentscreate', { title: 'apartments Create'});
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
+
+// Handle building the view for updating a costume.
+// query provides the id
+exports.apartments_update_Page = async function(req, res) {
+console.log("update view for item "+req.query.id)
+try{
+let result = await apartments.findById(req.query.id)
+res.render('apartmentsupdate', { title: 'apartments Update', toShow: result });
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
+
+// Handle a delete one view with id from query
+exports.apartments_delete_Page = async function(req, res) {
+console.log("Delete view for id " + req.query.id)
+try{
+result = await apartments.findById(req.query.id)
+res.render('apartmentsdelete', { title: 'apartments Delete', toShow:
+result });
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
+
+
 
 
 // // for a specific apartments.

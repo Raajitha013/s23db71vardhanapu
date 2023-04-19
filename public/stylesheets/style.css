@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+.apartmentsAttr {
+  background-color: aquamarine;
+  width: 120px;
+}
+
+.apartmentsAttr {
+  background-color: violet;
+  width: 120px;
+}
+
+
+
+#apartmentsForm {
+  background-color: rgb(166, 14, 237);
+  width: 325px;
+}
+
+h1 {
+  color: rgb(218, 180, 29);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

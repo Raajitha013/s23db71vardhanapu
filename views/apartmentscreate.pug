@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  form(id='apartmentsForm', action="/resource/apartments", method="POST")
+    div.form-group
+      label.apartmentsAttr(for='apartment_location') apartments location
+      input#apartment_location(type='text', name='apartment_location')
+    div.form-group
+      label.apartmentsAttr(for='apartment_rent') apartments rent
+      input#apartment_rent(type='text', name='apartment_rent')
+    div.form-group
+      label.apartmentsAttr(for='apartment_size') apartments size
+      input#apartment_size(type='number', name='apartment_size')
+    input(type="submit")
+    script.
+      document.forms['apartmentsForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+      method: 'POST',
+      body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+      return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+      alert("Save succeeded")
+      // TODO handle body
+      }).catch((error) => {
+      // TODO handle error
+      alert("Save failed " + error )
+      });
+      });

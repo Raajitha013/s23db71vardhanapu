@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1= title
+  - let apartmentsid = toShow._id
+  - let apartment_location = toShow.apartment_location
+  - let apartment_rent = toShow.apartment_rent
+  - let apartment_size = toShow.apartment_size
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{apartmentsid}
+  - let actionid = "/resource/apartments/" + apartmentsid
+  form(id='apartmentsForm', action= actionid, method="PUT")
+    div.form-group
+      label.apartmentsAttr(for='apartment_location') apartments location
+      input#apartment_location(type='text', name='apartment_location', value= apartment_location )
+    div.form-group
+      label.apartmentsAttr(for='apartment_rent') apartments rent
+      input#apartment_rent(type='text', name='apartment_rent', value= apartment_rent )
+    div.form-group
+      label.apartmentsAttr(for='apartment_size') apartments size
+      input#apartment_size(type='number', name='apartment_size', value= apartment_size )
+    input(type="submit")
+  script.
+    document.forms['apartmentsForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });
