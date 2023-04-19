@@ -18,3 +18,4 @@ router.get('/update', apartments_controlers.apartments_update_Page);
 /* GET delete costume page */
 router.get('/delete', apartments_controlers.apartments_delete_Page);
 
+
