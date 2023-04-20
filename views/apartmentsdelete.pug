@@ -12,7 +12,7 @@ block content
     - let apartment_size = toShow.apartment_size
     - let actionid = "/resource/apartments/" + apartmentsid
 
-    script
+    script.
       let actionid = "#{actionid}"
 
     div
@@ -31,7 +31,6 @@ block content
       div.row
         div(class='apartmentsAttr mr-3') apartment size is:
         div #{apartment_size}
-
       button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
       button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
 
