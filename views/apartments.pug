@@ -2,13 +2,22 @@ extends layout
 
 block content
   h1= title
-  - var app= results
-  div(class="container-fluid")
-  div(class="row")
-   each z,index  in app
-    div(class="col-sm-2" onclick =`buy(${index})`) #{z.apartment_location}, #{z.apartment_size}, #{z.apartment_rent}
+  - var app = results
+  div.container-fluid
+    div.row.m-1
+      each item, index in app
+        - let destination = `dispatch("/apartments/update?id=${item._id}")`
+        div.col-sm-2(onclick=`buy(${index})`)
+          | #{item.apartment_location}, #{item.apartment_size}, #{item.apartment_rent}
+          button.btn.btn-primary.ml-1(onclick=destination) Update
     script.
-        function buy(a)
-        {
-            alert(`You purchased Item ${a+1}`)
-        }
+      function buy(a) {
+        alert(`You purchased Item ${a+1}`)
+      }
+    script.
+      function dispatch(path) {
+        window.location.href = path
+      }
+
+
+
