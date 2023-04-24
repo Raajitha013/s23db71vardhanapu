@@ -1,19 +1,30 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   p Raajitha Vardhanapu 
+//-   p This is my repo
+//-   p Welcome to #{title}
+//-   button(type="button" class="btn btn-secondary" onclick="doReduce()") Press Me
+//-   a(href="http://localhost:3000/apartments") Click Here to Visit Apartments Website
+//-   div#reduce Reduce the value
+//-   script.
+//-     let count = 20;
+//-     let change = -1;
+//-     function doReduce() {
+//-       count += change;
+//-       change -= 1;
+//-       document.getElementById('reduce').textContent = `Count ${count} with change ${change}`;
+//-     }
 extends layout
 
 block content
-  h1= title
-  p Raajitha Vardhanapu 
-  p This is my repo
-  p Welcome to #{title}
-  button(type="button" class="btn btn-secondary" onclick="doReduce()") Press Me
-  a(href="http://localhost:3000/apartments") Click Here to Visit Apartments Website
-  div#reduce Reduce the value
-  script.
-    let count = 20;
-    let change = -1;
-    function doReduce() {
-      count += change;
-      change -= 1;
-      document.getElementById('reduce').textContent = `Count ${count} with change ${change}`;
-    }
-  
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/apartments") Take me to apartments
+    br
+    a(href="/logout") Logout

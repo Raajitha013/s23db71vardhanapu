@@ -17,13 +17,13 @@ block content
   form(id='aptForm', action= actionid, method="PUT")
     div.form-group
       label.aptAttr(for='apt_type') apartments Location
-      input#apt_type(type='String', name='apt_type', value= apt_type )
+      input#apt_type(type='String', name='apartment_location', value= apt_type )
     div.form-group
       label.aptAttr(for='apt_name') apartment Size
-      input#apt_name(type='String', name='apt_name', value= apt_name )
+      input#apt_name(type='String', name='apartment_size', value= apt_name )
     div.form-group
       label.aptAttr(for='apt_cost') apartment rent
-      input#apt_cost(type='number', name='apt_cost', value= apt_cost )
+      input#apt_cost(type='number', name='apartment_rent', value= apt_cost )
     input(class="btn btn-success m-2" type="submit")
   script.
     document.forms['aptForm'].addEventListener('submit', (event) => {
